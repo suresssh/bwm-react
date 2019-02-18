@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 export const RentalCard = ({ rental }) => {
   return (
     <div className='col-md-3 col-xs-6'>
-    <Link to={`/rentals/${rental.id}`} className='rental-detail-link'> 
+    <Link to={`/rental/${rental.id}`} className='rental-detail-link'> 
       <div className='card bwm-card'>
         <img className='card-img-top' src={rental.image} alt='rental main pic'></img>
         <div className='card-block'>

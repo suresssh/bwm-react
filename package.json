@@ -20,9 +20,9 @@
   "scripts": {
     "watch-css": "node-sass-chokidar ./src -o ./src",
     "build-css": "npm run build-css && node-sass-chokidar ./src -o ./src --watch --recursive",
-    "start": "npm-run-all -p watch-css start-js",
+    "start": "npm-run-all -p watch-css start-js start-dev",
     "start-js": "react-scripts start",
-    "start-dev": "npm start --prefix server",
+    "start-dev": "node ./server/index.js",
     "build": "npm-run-all -p build-css build-js",
     "build-js": "react-scripts build",
     "test": "react-scripts test",
