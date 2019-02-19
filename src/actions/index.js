@@ -15,6 +15,7 @@ export const fetchList = () => dispatch => {
 
 export const fetchRentalById = (rentalId) => dispatch => {
     let rental = {};
+    dispatch({ type: FETCH_RENTAL_FIND_BY_ID, payload: {} });
 
     setTimeout(() => {
         rental = rentals.find((rental) => parseInt(rentalId) === rental.id);
