@@ -15,7 +15,7 @@ class App extends Component {
     this.state = {
     }
   }
-  
+
   render() {
     return (
       <Provider store={store}>
@@ -23,9 +23,9 @@ class App extends Component {
           <div>
             <Header></Header>
             <div className='container'>
-              <Route exact path="/" render={() => (<Redirect to='/rentals' />)} />
-              <Route exact path="/rentals" component={RentalList} />
-              <Route exact path="/rental/:id" component={RentalDetail} />
+              <Route exact={true} path='/' render={() => <Redirect to='/rentals' />} />
+              <Route exact={true} path="/rentals" component={RentalList} />
+              <Route exact={true} path="/rental/:id" component={RentalDetail} />
             </div>
           </div>
         </BrowserRouter>

@@ -13,7 +13,7 @@ class RentalDetailContainer extends Component {
         const rental = this.props.rental;
         return (
             <div>
-                {!rental.id ?
+                {!rental._id ?
                     <p>Loading...</p> :
                     <div>
                         <p>{rental.title}</p>
