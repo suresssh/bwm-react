@@ -3,56 +3,37 @@ const Rental = require('./rental')
 class FakeDb {
     constructor() {
         this.rentals = [{
-            id: 1,
-            title: "Central Apartment",
-            city: "New York",
-            street: "Times Sqaure",
-            category: "apartment",
-            image: "http://via.placeholder.com/350x250",
-            bedrooms: 3,
-            description: "Very nice apartment",
-            dailyRate: 34,
-            shared: false,
-            createdAt: new Date()
-        },
-        {
-            id: 2,
-            title: "Central Apartment 2",
+            title: "Nice view on ocean",
             city: "San Francisco",
             street: "Main street",
             category: "condo",
-            image: "http://via.placeholder.com/350x250",
-            bedrooms: 2,
-            description: "Very nice apartment",
-            dailyRate: 12,
+            image: "https://booksync-jerga-prod.s3.amazonaws.com/uploads/rental/image/5/image.jpeg",
+            bedrooms: 4,
             shared: true,
-            createdAt: new Date()
+            description: "Very nice apartment in center of the city.",
+            dailyRate: 43
         },
         {
-            id: 3,
-            title: "Central Apartment 3",
-            city: "Bratislava",
-            street: "Hlavna",
-            category: "condo",
-            image: "http://via.placeholder.com/350x250",
-            bedrooms: 2,
-            description: "Very nice apartment",
-            dailyRate: 334,
-            shared: true,
-            createdAt: new Date()
+            title: "Modern apartment in center",
+            city: "New York",
+            street: "Time Square",
+            category: "apartment",
+            image: "https://booksync-jerga-prod.s3.amazonaws.com/uploads/rental/image/5/image.jpeg",
+            bedrooms: 1,
+            shared: false,
+            description: "Very nice apartment in center of the city.",
+            dailyRate: 11
         },
         {
-            id: 4,
-            title: "Central Apartment 4",
-            city: "Berlin",
-            street: "Haupt strasse",
+            title: "Old house in nature",
+            city: "Spisska Nova Ves",
+            street: "Banicka 1",
             category: "house",
-            image: "http://via.placeholder.com/350x250",
-            bedrooms: 9,
-            description: "Very nice apartment",
-            dailyRate: 33,
+            image: "https://booksync-jerga-prod.s3.amazonaws.com/uploads/rental/image/5/image.jpeg",
+            bedrooms: 5,
             shared: true,
-            createdAt: new Date()
+            description: "Very nice apartment in center of the city.",
+            dailyRate: 23
         }]
     }
 
