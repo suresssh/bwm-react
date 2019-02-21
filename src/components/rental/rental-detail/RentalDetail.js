@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchRentalById } from '../../../actions';
 import { RentalDetailInfo } from './RentalDetailInfo'
+import { RentalMap } from './RentalMap'
 
 class RentalDetailContainer extends Component {
 
@@ -24,7 +25,7 @@ class RentalDetailContainer extends Component {
                                         <img src={rental.image} alt=''></img>
                                     </div>
                                     <div className='col-md-6'>
-                                        <img src={rental.image} alt=''></img>
+                                        <RentalMap location={`${rental.city}, ${rental.street}`} />
                                     </div>
                                 </div>
                             </div>
