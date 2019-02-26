@@ -1,7 +1,9 @@
 
-import { rentalReducer, rentalByIdReducer } from './rental-reducer'
+import { rentalReducer, rentalByIdReducer } from './rental-reducer';
+import {authReducer} from './auth-reducer'
 import { combineReducers, createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
+import { reducer as FormReducer } from 'redux-form';
 
 const composeEnhancers =
     typeof window === 'object' &&
@@ -14,7 +16,9 @@ const enhancer = composeEnhancers(applyMiddleware(thunk));
 export const Init = () => {
     const reducer = combineReducers({
         rentals: rentalReducer,
-        rental: rentalByIdReducer
+        rental: rentalByIdReducer,
+        form: FormReducer,
+        auth: authReducer
     });
     const store = createStore(reducer, enhancer);
     return store;

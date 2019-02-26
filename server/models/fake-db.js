@@ -1,4 +1,5 @@
-const Rental = require('./rental')
+const Rental = require('./rental');
+const User = require('./user');
 
 class FakeDb {
     constructor() {
@@ -35,9 +36,16 @@ class FakeDb {
             description: "Very nice apartment in center of the city.",
             dailyRate: 23
         }]
+
+        this.user = {
+            username: 'testuser',
+            email: 'testemail@gmail.com',
+            password: 'test@123'
+        }
     }
 
     async cleanDb() {
+        // await User.deleteMany({});
         await Rental.deleteMany({});
     }
 

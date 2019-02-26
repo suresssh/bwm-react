@@ -1,12 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const Rentals = require('../models/rental')
+const Rentals = require('../models/rental');
+const UserCtrl = require('../controllers/user');
+
+router.get('/secret', UserCtrl.authMiddleware, function (req, res) {
+    return res.json({ secret: true });
+})
 
 
 router.get('', function (req, res) {
     Rentals.find({}, function (err, foundedRentals) {
         if (err) return console.error(err);
-        res.json(foundedRentals);
+        return res.json(foundedRentals);
     })
 })
 
@@ -16,7 +21,7 @@ router.get('/:id', function (req, res) {
         if (err) {
             res.status(422).send({ errors: [{ title: "Rental Error", detail: "not found" }] });
         }
-        res.json(foundedRentals);
+        return res.json(foundedRentals);
     })
 })
 

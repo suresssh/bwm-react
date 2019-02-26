@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { RentalCard } from '../rental-card/RentalCard'
 import { connect } from 'react-redux'
-import { fetchList } from '../../../actions'
+import { fetchRentals } from '../../../actions'
 
 class RentalListContainer extends Component {
     constructor(props) {
@@ -13,7 +13,7 @@ class RentalListContainer extends Component {
 
     componentWillMount() {
         // this.props.dispatch(fetchList())
-        this.props.fetchList();
+        this.props.fetchRentals();
     }
 
     renderRentals() {
@@ -42,5 +42,5 @@ const mapStatetoProps = (state) => {
     }
 }
 
-const RentalList = connect(mapStatetoProps,{fetchList})(RentalListContainer);
+const RentalList = connect(mapStatetoProps,{fetchRentals})(RentalListContainer);
 export { RentalList };
