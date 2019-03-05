@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import RentalSearchInput from '../rental/RentalSearchInput';
+// import reactLogo from '../../img/react-logo.svg';
 
 class Header extends React.Component {
 
@@ -54,7 +55,7 @@ class Header extends React.Component {
       <nav className='navbar navbar-dark navbar-expand-lg'>
         <div className='container'>
           <Link className='navbar-brand' to='/rentals'>BookWithMe
-            <img src={process.env.PUBLIC_URL + '/img/react-logo.svg'} alt="" />
+            {/* <img src={reactLogo} alt="" /> */}
           </Link>
           <RentalSearchInput />
           <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarNavAltMarkup' aria-controls='navbarNavAltMarkup' aria-expanded='false' aria-label='Toggle navigation'>

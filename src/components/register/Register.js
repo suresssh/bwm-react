@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import RegisterForm from './RegisterForm';
 import { register } from '../../actions';
 import { Redirect } from 'react-router-dom';
-import registerImage from '../../img/register-image.jpg'
+import registerImage from '../../img/register-image.jpg';
 
 class Register extends Component {
     constructor() {

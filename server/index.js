@@ -1,4 +1,4 @@
-const FakeDb = require('./models/fake-db');
+const FakeDb = require('./fake-db');
 const express = require('express');
 const mongoose = require('mongoose');
 const mongoUrl = require('./config').DB_URI;
@@ -6,14 +6,13 @@ const bodyParser = require('body-parser');
 const app = express();
 const getRentals = require('./routes/rentals');
 const userRoutes = require('./routes/users');
+const bookingRoutes = require('./routes/bookings')
 
-
-
-mongoose.connect(mongoUrl, { useNewUrlPaÎrser: true })
+mongoose.connect(mongoUrl, { useNewUrlParser: true, useCreateIndex: true })
     .then(function () {
         console.log('Successfully connected to database');
-        fakeDb = new FakeDb();
-        fakeDb.initPushRental();
+        // fakeDb = new FakeDb();
+        // fakeDb.seedDb();
     }, function (err) {
         console.log('Not connected to database ' + err);
     });
@@ -23,6 +22,7 @@ mongoose.connect(mongoUrl, { useNewUrlPaÎrser: true })
 app.use(bodyParser.json());
 app.use('/api/v1/rentals', getRentals);
 app.use('/api/v1/users', userRoutes);
+app.use('/api/v1/bookings', bookingRoutes);
 
 
 
