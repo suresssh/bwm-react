@@ -1,46 +1,22 @@
-import React, { Component } from 'react';
-import { RentalCard } from '../rental-card/RentalCard'
-import { connect } from 'react-redux'
-import { fetchRentals } from '../../../actions'
+import React from 'react';
+import { RentalCard } from '../rental-card/RentalCard';
 
-class RentalListContainer extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
+export class RentalList extends React.Component {
 
-        }
-    }
-
-    componentWillMount() {
-        // this.props.dispatch(fetchList())
-        this.props.fetchRentals();
-    }
-
-    renderRentals() {
-        return this.props.rentals.map(rental => {
-            return (<RentalCard key={rental._id} rental={rental} />)
-        }
+  renderRentals() {
+    return this.props.rentals.map((rental, index) => {
+      return (
+          <RentalCard key={index}
+                      colNum='col-md-3 col-xs-6'
+                      rental={rental}/>
         )
-    }
-
-    render() {
-        return (
-            <section id='rentalListing'>
-                <h1 className='page-title'>Your Home All Around the World</h1>
-                <div className='row'>
-                    {this.renderRentals()}
-                </div>
-            </section>
-        )
-    }
+    });
+  }
+  render() {
+    return (
+      <div className="row">
+        {this.renderRentals()}
+      </div>
+    )
+  }
 }
-
-
-const mapStatetoProps = (state) => {
-    return {
-        rentals: state.rentals.data
-    }
-}
-
-const RentalList = connect(mapStatetoProps,{fetchRentals})(RentalListContainer);
-export { RentalList };

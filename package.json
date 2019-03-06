@@ -23,6 +23,7 @@
     "react-bootstrap-daterangepicker": "^4.1.0",
     "react-dom": "^16.8.2",
     "react-google-maps": "^9.4.5",
+    "react-image-crop": "^6.0.16",
     "react-redux": "^5.0.7",
     "react-responsive-modal": "^3.6.0",
     "react-router-dom": "^4.2.2",

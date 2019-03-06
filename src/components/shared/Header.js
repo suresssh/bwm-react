@@ -39,8 +39,8 @@ class Header extends React.Component {
           </p>
           <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <Link className="dropdown-item" to="/rentals/new">Create Rental</Link>
-            <Link className="dropdown-item" to="/rentals/manage">Manage Rentals</Link>
-            <Link className="dropdown-item" to="/bookings/manage">Manage Bookings</Link>
+            {/* <Link className="dropdown-item" to="/rentals/manage">Manage Rentals</Link>
+            <Link className="dropdown-item" to="/bookings/manage">Manage Bookings</Link> */}
           </div>
         </div>
       )
@@ -66,7 +66,7 @@ class Header extends React.Component {
               {isAuth &&
                 <p className='nav-item nav-link'>{username}</p>
               }
-              {/* {this.renderOwnerSection(isAuth)} */}
+              {this.renderOwnerSection(isAuth)}
               {this.renderAuthButtons(isAuth)}
             </div>
           </div>
