@@ -5,6 +5,7 @@ import { BwmResError } from '../shared/form/BwmResError';
 import { required, minLength4 } from '../shared/form/validators';
 
 const LoginForm = props => {
+    debugger
     const { handleSubmit, pristine, submitting, submitCb, valid, errors } = props;
     return (
         <form onSubmit={handleSubmit(submitCb)}>

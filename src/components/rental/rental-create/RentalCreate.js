@@ -1,7 +1,8 @@
 import React from 'react';
 import RentalCreateForm from './RentalCreateForm';
 import { Redirect } from 'react-router-dom';
-import CreateRental from '../../../img/create-rental.jpg'
+import CreateRental from '../../../img/create-rental.jpg';
+import { toast, ToastContainer } from 'react-toastify'
 import * as actions from '../../../actions';
 
 export class RentalCreate extends React.Component {
@@ -22,7 +23,12 @@ export class RentalCreate extends React.Component {
     createRental(rentalData) {
         debugger;
         actions.createRental(rentalData).then(
-            (rental) => this.setState({ redirect: true }),
+            (rental) => {
+                toast.success('Rental created Successfully!');
+                setTimeout(() => {
+                    this.setState({ redirect: true });
+                }, 1500);
+            },
             (errors) => this.setState({ errors }))
     }
 
@@ -33,13 +39,14 @@ export class RentalCreate extends React.Component {
 
         return (
             <section id='newRental'>
+                <ToastContainer />
                 <div className='bwm-form'>
                     <div className='row'>
                         <div className='col-md-5'>
                             <h1 className='page-title'>Create Rental</h1>
                             <RentalCreateForm submitCb={this.createRental}
                                 options={this.rentalCateogies}
-                                errors={this.state.errors}/>
+                                errors={this.state.errors} />
                         </div>
                         <div className='col-md-6 ml-auto'>
                             <div className='image-container'>
