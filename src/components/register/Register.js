@@ -19,8 +19,7 @@ class Register extends Component {
     registerUser(userData) {
         register(userData).then(
             registered => this.setState({ redirect: true }),
-            errors =>this.setState({ errors })
-
+            errors => this.setState({ errors })
         );
     }
 

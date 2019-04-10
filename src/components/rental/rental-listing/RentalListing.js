@@ -9,6 +9,7 @@ class RentalListing extends React.Component {
 
   componentWillMount() {
     this.props.dispatch(actions.fetchRentals());
+    
   }
 
   render() {

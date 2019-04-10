@@ -1,4 +1,7 @@
 import {
+    FETCH_USER_BOOKINGS_INIT,
+    FETCH_USER_BOOKINGS_SUCCESS,
+    FETCH_USER_BOOKINGS_FAIL,
     FETCH_RENTAL_BY_ID_SUCCESS,
     FETCH_RENTAL_BY_ID_INIT,
     FETCH_RENTALS_SUCCESS,
@@ -134,21 +137,68 @@ export const createBooking = (booking) => {
 
 export const createRental = (rentalData) => {
     return axiosInstance.post('/rentals', rentalData).then(
+        res => res.data,
+        err => Promise.reject(err.response.data.errors)
+    )
+}
+
+
+export const uploadImage = image => {
+    const formData = new FormData();
+    formData.append('image', image);
+
+    return axiosInstance.post('/image-upload', formData)
+        .then(json => {
+            return json.data.imageUrl;
+        })
+        .catch(({ response }) => Promise.reject(response.data.errors[0]))
+}
+
+// USER BOOKINGS ACTIONS ---------------------------
+
+const fetchUserBookingsInit = () => {
+    return {
+        type: FETCH_USER_BOOKINGS_INIT
+    }
+}
+
+const fetchUserBookingsSuccess = (userBookings) => {
+    return {
+        type: FETCH_USER_BOOKINGS_SUCCESS,
+        userBookings
+    }
+}
+
+const fetchUserBookingsFail = (errors) => {
+    return {
+        type: FETCH_USER_BOOKINGS_FAIL,
+        errors
+    }
+}
+
+export const fetchUserBookings = () => {
+    return dispatch => {
+        dispatch(fetchUserBookingsInit());
+        axiosInstance.get('/bookings/manage')
+            .then(res => res.data)
+            .then(userBookings => dispatch(fetchUserBookingsSuccess(userBookings)))
+            .catch(({ response }) => dispatch(fetchUserBookingsFail(response.data.errors)))
+    }
+}
+
+
+// USER RENTALS ACTIONS ---------------------------
+
+export const getUserRentals = () => {
+    return axiosInstance.get('/rentals/manage').then(
       res => res.data,
       err => Promise.reject(err.response.data.errors)
     )
   }
-
-
-  export const uploadImage = image => {
-    const formData = new FormData();
-    formData.append('image', image);
   
-    return axiosInstance.post('/image-upload', formData)
-      .then(json => {
-        return json.data.imageUrl;
-      })
-      .catch(({response}) => Promise.reject(response.data.errors[0]))
+  export const deleteRental = (rentalId) => {
+    return axiosInstance.delete(`/rentals/${rentalId}`).then(
+      res => res.data,
+      err => Promise.reject(err.response.data.errors))
   }
-  
   

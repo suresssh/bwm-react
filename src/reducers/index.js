@@ -1,6 +1,7 @@
 
 import { rentalReducer, selectedRentalReducer } from './rental-reducer';
-import {authReducer} from './auth-reducer'
+import { authReducer } from './auth-reducer';
+import { userBookingsReducer } from './booking-reducer';
 import { combineReducers, createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { reducer as FormReducer } from 'redux-form';
@@ -18,7 +19,8 @@ export const Init = () => {
         rentals: rentalReducer,
         rental: selectedRentalReducer,
         form: FormReducer,
-        auth: authReducer
+        auth: authReducer,
+        userBookings: userBookingsReducer
     });
     const store = createStore(reducer, enhancer);
     return store;
