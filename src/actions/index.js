@@ -7,14 +7,25 @@ import {
     FETCH_RENTALS_SUCCESS,
     FETCH_RENTALS_INIT,
     FETCH_RENTALS_FAIL,
+    UPDATE_RENTAL_FAIL,
+    UPDATE_RENTAL_SUCCESS,
     LOGIN_SUCCESS,
+    RESET_RENTAL_ERRORS,
     LOGIN_FAILURE,
-    LOGOUT
+    LOGOUT,
+    RELOAD_MAP,
+    RELOAD_MAP_FINISH
 } from './types'; import axios from 'axios';
 import authService from '../services/auth-service';
 import axiosService from '../services/axios-service';
 
 const axiosInstance = axiosService.getInstance();
+
+
+export const verifyRentalOwner = (rentalId) => {
+    return axiosInstance.get(`/rentals/${rentalId}/verify-user`);
+}
+
 
 export const logout = () => {
     authService.invalidateUser();
@@ -142,6 +153,43 @@ export const createRental = (rentalData) => {
     )
 }
 
+export const resetRentalErrors = () => {
+    return {
+        type: RESET_RENTAL_ERRORS
+    }
+}
+
+
+const updateRentalSuccess = (updatedRental) => {
+    return {
+        type: UPDATE_RENTAL_SUCCESS,
+        rental: updatedRental
+    }
+}
+
+
+const updateRentalFail = (errors) => {
+    return {
+        type: UPDATE_RENTAL_FAIL,
+        errors
+    }
+}
+
+
+
+export const updateRental = (id, rentalData) => dispatch => {
+    return axiosInstance.patch(`/rentals/${id}`, rentalData)
+        .then(res => res.data)
+        .then(updatedRental => {
+            dispatch(updateRentalSuccess(updatedRental));
+
+            if (rentalData.city || rentalData.street) {
+                dispatch(reloadMap());
+            }
+        })
+        .catch(({ response }) => dispatch(updateRentalFail(response.data.errors)))
+}
+
 
 export const uploadImage = image => {
     const formData = new FormData();
@@ -186,19 +234,30 @@ export const fetchUserBookings = () => {
     }
 }
 
+export const reloadMap = () => {
+    return {
+        type: RELOAD_MAP
+    }
+}
+
+export const reloadMapFinish = () => {
+    return {
+        type: RELOAD_MAP_FINISH
+    }
+}
+
 
 // USER RENTALS ACTIONS ---------------------------
 
 export const getUserRentals = () => {
     return axiosInstance.get('/rentals/manage').then(
-      res => res.data,
-      err => Promise.reject(err.response.data.errors)
+        res => res.data,
+        err => Promise.reject(err.response.data.errors)
     )
-  }
-  
-  export const deleteRental = (rentalId) => {
+}
+
+export const deleteRental = (rentalId) => {
     return axiosInstance.delete(`/rentals/${rentalId}`).then(
-      res => res.data,
-      err => Promise.reject(err.response.data.errors))
-  }
-  
+        res => res.data,
+        err => Promise.reject(err.response.data.errors))
+}

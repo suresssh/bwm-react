@@ -9,6 +9,7 @@ import RentalManage from './components/rental/rental-manage/RentalManage';
 import RentalSearchListing from './components/rental/rental-listing/RentalSearchListing';
 import BookingManage from './components/booking/booking-manage/BookingManage';
 import Header from './components/shared/Header';
+import RentalUpdate from './components/rental/rental-detail/RentalUpdate';
 import { Provider } from 'react-redux';
 import { Init } from './reducers';
 import Login from './components/login/Login';
@@ -53,6 +54,7 @@ class App extends Component {
               <Route exact path={'/login'} component={Login}></Route>
               <Route exact path={'/register'} component={Register}></Route>
               <Route exact={true} path={"/rental/:id"} component={RentalDetail} />
+              <Route exact path='/rentals/:id/edit' component={RentalUpdate} />
             </div>
           </div>
         </BrowserRouter>
