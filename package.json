@@ -2,6 +2,10 @@
   "name": "bwm-react",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "11.1.0",
+    "npm": "6.4.1"
+  },
   "proxy": "http://localhost:3001",
   "dependencies": {
     "axios": "^0.18.0",
